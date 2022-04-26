@@ -3,9 +3,13 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "node ./bin/www"
+    "start": "node ./bin/www",
+    "lint": "eslint --fix",
+    "format": "prettier --write"
   },
   "dependencies": {
+    "body-parser": "~1.16.0",
+    "bookshelf": "^0.10.3",
     "cookie-parser": "~1.4.4",
     "debug": "~2.6.9",
     "ejs": "~2.6.1",
@@ -14,12 +18,17 @@
     "express-session": "^1.17.2",
     "express-validator": "^5.2.0",
     "http-errors": "~1.6.3",
-    "morgan": "~1.9.1",
-    "sqlite3": "^5.0.4",
-    "xml2js": "^0.4.23",
     "knex": "^0.12.9",
-    "bookshelf": "^0.10.3",
-    "body-parser": "~1.16.0",
-    "serve-favicon": "~2.3.2"
+    "morgan": "~1.9.1",
+    "serve-favicon": "~2.3.2",
+    "sqlite3": "^5.0.4",
+    "xml2js": "^0.4.23"
+  },
+  "devDependencies": {
+    "eslint": "^8.14.0",
+    "eslint-config-eslint": "^7.0.0",
+    "eslint-config-google": "^0.14.0",
+    "eslint-config-prettier": "^8.5.0",
+    "prettier": "^2.6.2"
   }
 }
