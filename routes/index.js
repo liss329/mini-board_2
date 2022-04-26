@@ -19,11 +19,13 @@ const Message = Bookshelf.Model.extend({
 /* GET home page. */
 router.get("/", function (req, res, next) {
   new Message().fetchAll().then((collection) => {
-    const data = {
-      title: "Express",
-      content: collection.toArray(),      
-    };
-    res.render("index", data);
+    // const data = {
+    //   title: "Express",
+    //   content: collection.toArray(),
+    //   pagination: collection.pagination,
+    // };
+    // res.render("index", data);
+    res.redirect('/1');
   });
 });
 
@@ -33,7 +35,22 @@ router.post("/", (req, res, next) => {
     res.redirect("/");
   });
 });
+
+router.get("/:page", (req, res, next) => {
+  const page = req.params.page >= 1 ? req.params.page : 1;
+  new Message().fetchPage({ page: page, pageSize: 5 }).then((collection) => {
+    const data = {
+      title: "Express",
+      content: collection.toArray(),
+      pagination: collection.pagination,
+    };
+    console.log(collection.pagination);
+    res.render("index", data);
   });
+});
+
+router.get("/login", (req, res, next) => {
+
 });
 
 module.exports = router;
