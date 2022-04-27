@@ -31,7 +31,12 @@
           </tr>
         <% } %>
       </table>
-      <% if(pagination.page === 1){ %>
+      <% if(pagination.pageCount === 1){ %>
+        <span>&lt;&lt; First</span>
+        <span>&lt;&lt; Prev</span>
+        <span>Next &gt;&gt;</a></span>
+        <span>Last &gt;&gt;</a></span>
+      <% }else if(pagination.page === 1){ %>
         <span>&lt;&lt; First</a></span>
         <span>&lt;&lt; Prev</a></span>
         <span><a href="<%= pagination.page + 1 %>">Next &gt;&gt;</a></span>
