@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+  </head>
+  <body>
+    <head>
+      <h1><%= title %></h1>
+    </head>
+    <div role="main">
+      <p>※登録する名前・パスワード・コメントを入力して下さい。</p>
+      <form action="/users/add" method="post">
+          <table>
+              <tr>
+                <th>NAME</th>
+                <td><input type="text" name="name"></td>
+              </tr>
+              <tr>
+                <th>PASSWORD</th>
+                <td><input type="text" name="password"></td>
+              </tr>
+              <tr>
+                <th>COMMENT</th>
+                <td><textarea name="comment"cols="30" rows="10"></textarea></td>
+              </tr>
+              <tr>
+                <th></th>
+                <td><input type="submit" value="作成"></td>
+              </tr>
+          </table>
+      </form>
+    </div>
+
+  </body>
+</html>
