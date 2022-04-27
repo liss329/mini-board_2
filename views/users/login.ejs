@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+  </head>
+  <body>
+    <head>
+      <h1><%= title %></h1>
+    </head>
+    <div role="main">
+      <p>名前とパスワードを入力して下さい。</p>
+      <form action="/users" method="post">
+          <table>
+              <tr>
+                <th>NAME</th>
+                <td><input type="text" name="name"></td>
+              </tr>
+              <tr>
+                <th>PASSWORD</th>
+                <td><input type="text" name="password"></td>
+              </tr>
+              <tr>
+                <th></th>
+                <td><input type="submit" value="ログイン"></td>
+              </tr>
+          </table>
+      </form>
+        <span><a href="/">&lt;&lt; Topへ戻る</a></span>
+        <span><a href="/users/add">アカウントの作成 &gt;&gt;</a></span>
+    </div>
+
+  </body>
+</html>

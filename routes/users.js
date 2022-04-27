@@ -17,6 +17,31 @@ const Users = Bookshelf.Model.extend({
 
 /* GET users listing. */
 router.get("/", function (req, res, next) {
+  const data = {
+    title: "users/login",
+  };
+  console.log(req.session.login);
+  res.render("users/login", data);
+});
+
+router.post("/", (req, res, next) => {
+  // eslint-disable-next-line new-cap
+  Users.query({
+    where: { name: req.body.name },
+    andWhere: { password: req.body.password },
+  })
+    .fetch()
+    .then((model) => {
+      if (model !== null) {
+        console.log(model.attributes);
+        req.session.userName = model.attributes.name;
+        req.session.login = true;
+        console.log(
+          `ログイン状態：${req.session.login}、ユーザーネーム：${req.session.userName}`
+        );
+        res.redirect("/");
+      }
+    });
 });
 
 router.get("/add", (req, res, next) => {

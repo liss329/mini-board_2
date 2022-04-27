@@ -18,9 +18,11 @@ const Message = Bookshelf.Model.extend({
 
 /* GET home page. */
 router.get("/", function (req, res, next) {
-  new Message().fetchAll().then((collection) => {
-    res.redirect('/board/1');
-  });
+  if (req.session.login === true) {
+    res.redirect("/board/1");
+  } else {
+    res.redirect("/users");
+  }
 });
 
 router.post("/", (req, res, next) => {
