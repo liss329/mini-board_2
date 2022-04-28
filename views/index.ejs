@@ -25,7 +25,7 @@
           <% const createdAt = new Date(content[i].attributes.created_at) %>
           <% const date = `${createdAt.getFullYear()}年${createdAt.getMonth() + 1}月${createdAt.getDate()}日${createdAt.getHours()}時${createdAt.getMinutes()}分${createdAt.getSeconds()}秒` %>
           <tr>
-            <th><%= content[i].relations.user.attributes.name %></th>
+            <th><a href="/home/<%= content[i].relations.user.attributes.id %>/1" class="home"><%= content[i].relations.user.attributes.name %></a></th>
             <td><%= content[i].attributes.message %></td>
             <td><%= date %></td>
           </tr>

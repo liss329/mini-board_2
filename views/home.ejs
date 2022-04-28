@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+  </head>
+  <body>
+    <head>
+      <h1><%= title %></h1>
+    </head>
+    <div role="main">
+      <p>Welcome to <%= title %></p>
+      <form action="/" method="post">
+        <input type="text" name="message">
+        <input type="submit" value="送信">
+      </form>
+      <hr>
+      <table>
+        <tr>
+          <th class="table_title">NAME</th>
+          <td class="table_title">メッセージ</td>
+          <td class="table_title">作成日時</td>
+        </tr>
+        <% for(const i in content){ %>
+          <% const createdAt = new Date(content[i].attributes.created_at) %>
+          <% const date = `${createdAt.getFullYear()}年${createdAt.getMonth() + 1}月${createdAt.getDate()}日${createdAt.getHours()}時${createdAt.getMinutes()}分${createdAt.getSeconds()}秒` %>
+          <tr>
+            <th><a href="/home/<%= content[i].relations.user.attributes.id %>/1"><%= content[i].relations.user.attributes.name %></a></th>
+            <td><%= content[i].attributes.message %></td>
+            <td><%= date %></td>
+          </tr>
+        <% } %>
+      </table>
+      <% if(pagination.pageCount === 1){ %>
+        <span>&lt;&lt; First</span>
+        <span>&lt;&lt; Prev</span>
+        <span>Next &gt;&gt;</a></span>
+        <span>Last &gt;&gt;</a></span>
+      <% }else if(pagination.page === 1){ %>
+        <span>&lt;&lt; First</a></span>
+        <span>&lt;&lt; Prev</a></span>
+        <span><a href="<%= pagination.page + 1 %>">Next &gt;&gt;</a></span>
+        <span><a href="<%= pagination.pageCount %>">Last &gt;&gt;</a></span>
+      <% }else if(pagination.page === pagination.pageCount){ %>
+        <span><a href="1">&lt;&lt; First</a></span>
+        <span><a href="<%= pagination.page - 1 %>">&lt;&lt; Prev</a></span>
+        <span>Next &gt;&gt;</a></span>
+        <span>Last &gt;&gt;</a></span>
+      <% }else{ %>
+        <span><a href="1">&lt;&lt; First</a></span>
+        <span><a href="<%= pagination.page - 1 %>">&lt;&lt; Prev</a></span>
+        <span><a href="<%= pagination.page + 1 %>">Next &gt;&gt;</a></span>
+        <span><a href="<%= pagination.pageCount %>">Last &gt;&gt;</a></span>
+      <% } %>
+
+    </div>
+
+  </body>
+</html>
