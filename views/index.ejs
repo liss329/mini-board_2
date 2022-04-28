@@ -17,7 +17,7 @@
       <hr>
       <table>
         <tr>
-          <th class="table_title">ID</th>
+          <th class="table_title">NAME</th>
           <td class="table_title">メッセージ</td>
           <td class="table_title">作成日時</td>
         </tr>
@@ -25,8 +25,8 @@
           <% const createdAt = new Date(content[i].attributes.created_at) %>
           <% const date = `${createdAt.getFullYear()}年${createdAt.getMonth() + 1}月${createdAt.getDate()}日${createdAt.getHours()}時${createdAt.getMinutes()}分${createdAt.getSeconds()}秒` %>
           <tr>
-            <th><%= content[i].attributes.id %></th>
-            <td><%= content[i].attributes.message%></td>
+            <th><%= content[i].relations.user.attributes.name %></th>
+            <td><%= content[i].attributes.message %></td>
             <td><%= date %></td>
           </tr>
         <% } %>

@@ -20,7 +20,6 @@ router.get("/", function (req, res, next) {
   const data = {
     title: "users/login",
   };
-  console.log(req.session.login);
   res.render("users/login", data);
 });
 
@@ -33,14 +32,14 @@ router.post("/", (req, res, next) => {
     .fetch()
     .then((model) => {
       if (model !== null) {
-        console.log(model.attributes);
-        req.session.userName = model.attributes.name;
-        req.session.login = true;
-        console.log(
-          `ログイン状態：${req.session.login}、ユーザーネーム：${req.session.userName}`
-        );
+        req.session.login = model.attributes;
         res.redirect("/");
+      } else {
+        // ユーザ名、パスワードに誤りがあることを伝える
       }
+    })
+    .catch((err) => {
+      console.error(err);
     });
 });
 
