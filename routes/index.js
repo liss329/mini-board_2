@@ -19,7 +19,7 @@ const Message = Bookshelf.Model.extend({
 /* GET home page. */
 router.get("/", function (req, res, next) {
   if (req.session.login === true) {
-    res.redirect("/board/1");
+    res.redirect("/1");
   } else {
     res.redirect("/users");
   }
@@ -32,7 +32,7 @@ router.post("/", (req, res, next) => {
   });
 });
 
-router.get("/board/:page", (req, res, next) => {
+router.get("/:page", (req, res, next) => {
   const page = req.params.page >= 1 ? req.params.page : 1;
   new Message().fetchPage({ page: page, pageSize: 5 }).then((collection) => {
     const data = {
